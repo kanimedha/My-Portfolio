@@ -5,25 +5,21 @@ function FloatingDarkToggle({ dark, toggleDark }) {
   return (
     <motion.button
       onClick={toggleDark}
-      initial={{ opacity: 0, scale: 0.7, x: 20 }}
-      animate={{ opacity: 1, scale: 1, x: 0 }}
-      transition={{ delay: 1.2, type: 'spring', stiffness: 300, damping: 22 }}
-      whileHover={{ scale: 1.1 }}
+      initial={{ opacity: 1, scale: 0.7, x: 20 }}
+      animate={{ opacity: 3, scale: 1, x: 0 }}
+      transition={{ delay: 0.3, type: 'spring', stiffness: 300, damping: 22 }}
+      whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 0.92 }}
       aria-label="Toggle dark mode"
-      className="fixed top-5 right-5 z-[200] w-11 h-11 rounded-2xl flex items-center justify-center shadow-xl border transition-all duration-300"
-      style={{
-        background: dark
-          ? 'rgba(30, 41, 59, 0.92)'
-          : 'rgba(255, 255, 255, 0.92)',
-        borderColor: dark
-          ? 'rgba(99, 179, 237, 0.25)'
-          : 'rgba(59, 130, 246, 0.18)',
-        backdropFilter: 'blur(12px)',
-        boxShadow: dark
-          ? '0 4px 24px rgba(59,130,246,0.18), 0 1px 4px rgba(0,0,0,0.4)'
-          : '0 4px 24px rgba(59,130,246,0.10), 0 1px 4px rgba(0,0,0,0.08)',
-      }}
+className="fixed top-5 right-5 z-[200] w-14 h-14 rounded-2xl flex items-center justify-center shadow-xl border transition-all duration-300 bg-white dark:bg-slate-800"      
+style={{
+  borderColor: dark
+    ? 'rgba(99, 179, 237, 0.8)'
+    : 'rgba(59, 130, 246, 0.6)',
+  boxShadow: dark
+    ? '0 6px 32px rgba(59,130,246,0.6), 0 1px 4px rgba(0,0,0,0.8)'
+    : '0 6px 32px rgba(59,130,246,0.4), 0 1px 4px rgba(0,0,0,0.2)',
+}}
     >
       <AnimatePresence mode="wait">
         {dark ? (
@@ -34,7 +30,7 @@ function FloatingDarkToggle({ dark, toggleDark }) {
             exit={{ rotate: 90, opacity: 0 }}
             transition={{ duration: 0.22 }}
           >
-            <Sun size={17} className="text-amber-400" />
+            <Sun size={22} className="text-amber-400" />
           </motion.span>
         ) : (
           <motion.span
@@ -44,7 +40,7 @@ function FloatingDarkToggle({ dark, toggleDark }) {
             exit={{ rotate: -90, opacity: 0 }}
             transition={{ duration: 0.22 }}
           >
-            <Moon size={17} className="text-blue-600" />
+            <Moon size={22} className="text-blue-600" />
           </motion.span>
         )}
       </AnimatePresence>

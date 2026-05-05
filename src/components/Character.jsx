@@ -4,7 +4,7 @@ function Character({ message = "Hi there! Welcome! 👋" }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <motion.img
-        src="/character.png"
+        src={`${import.meta.env.BASE_URL}character.png`}
         alt="character"
         className="w-64 md:w-80 object-contain"
         animate={{ y: [0, -15, 0] }}

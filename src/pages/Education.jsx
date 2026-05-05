@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion';
 import graduateImg from '../assets/graduate.png';
+import universityLogo from '../assets/university.png';
+import schoolLogo from '../assets/school.png';
+import universityBg from '../assets/university_background.jpg';
+import schoolBg from '../assets/school_background.jpg';
 
 const educationData = [
   {
@@ -8,8 +12,8 @@ const educationData = [
     location: "Pitipana, Homagama, Sri Lanka",
     period: "2026 - Present",
     description: "Third-year undergraduate specializing in Information Technology & Management.",
-    logo: "src/assets/university.png",
-    bgImage: "src/assets/university-background.jpg"
+    logo: universityLogo,
+    bgImage: universityBg
   },
   {
     institution: "Wp/Ho Palannoruwa Central College",
@@ -17,8 +21,8 @@ const educationData = [
     location: "Horana, Sri Lanka",
     period: "2008 - 2022",
     description: "Successfully completed G.C.E. Ordinary Level (O/L) and Advanced Level (A/L) examinations with a focus on Engineering Technology Stream.",
-    logo: "src/assets/school.png",
-    bgImage: "src/assets/school-background.jpg"
+    logo: schoolLogo,
+    bgImage: schoolBg
   }
 ];
 
@@ -67,7 +71,7 @@ const Education = () => {
               className="relative overflow-hidden group rounded-2xl border border-gray-700 bg-gray-900 flex flex-row items-center gap-4 p-5 shadow-xl"
             >
               <div
-                className="absolute inset-0 z-0 opacity-15 group-hover:opacity-25 transition-opacity duration-500"
+                className="absolute inset-0 z-0 opacity-60 group-hover:opacity-45 transition-opacity duration-500"
                 style={{
                   backgroundImage: `url(${edu.bgImage})`,
                   backgroundSize: 'cover',

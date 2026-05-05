@@ -5,7 +5,6 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import Navbar from '../components/Navbar'
 import ProjectPagination from '../components/ProjectPagination'
 
-// ── Real section components ──────────────────────────────────────────────────
 import About        from './About'
 import Education    from './Education'
 import Projects     from './Projects'
@@ -28,7 +27,6 @@ const navSections = [
   { id: 'contact',      label: 'Contact'      },
 ]
 
-// ── Particle background ──────────────────────────────────────────────────────
 function ParticleBackground() {
   const canvasRef = useRef(null)
 
@@ -42,7 +40,6 @@ function ParticleBackground() {
     canvas.width  = width
     canvas.height = height
 
-    // Detect dark mode
     const isDark = document.documentElement.classList.contains('dark')
 
     const PARTICLE_COUNT = 55
@@ -61,7 +58,6 @@ function ParticleBackground() {
     function draw() {
       ctx.clearRect(0, 0, width, height)
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
@@ -81,7 +77,6 @@ function ParticleBackground() {
         }
       }
 
-      // Draw particles
       particles.forEach(p => {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
@@ -124,21 +119,16 @@ function ParticleBackground() {
   )
 }
 
-// ── Main Home component ──────────────────────────────────────────────────────
 function Home({ toggleDark, dark }) {
   const [titleIndex, setTitleIndex]       = useState(0)
   const [displayed, setDisplayed]         = useState('')
   const [typing, setTyping]               = useState(true)
   const [activeSection, setActiveSection] = useState(0)
   const [navVisible, setNavVisible]       = useState(false)
-
-  // ProjectPagination state — managed here so arrow keys can control it
   const [projectIndex, setProjectIndex]   = useState(0)
   const TOTAL_PROJECTS = 6
-
   const hideTimer = useRef(null)
 
-  // ── Typing effect ──────────────────────────────────────────────────────────
   useEffect(() => {
     const current = titles[titleIndex]
     if (typing) {
@@ -160,7 +150,6 @@ function Home({ toggleDark, dark }) {
     }
   }, [displayed, typing, titleIndex])
 
-  // ── Scroll to section ──────────────────────────────────────────────────────
   const scrollToSection = useCallback((index) => {
     setActiveSection(index)
     setNavVisible(false)
@@ -168,7 +157,6 @@ function Home({ toggleDark, dark }) {
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }, [])
 
-  // ── IntersectionObserver — sync dot with scroll ────────────────────────────
   useEffect(() => {
     const observers = navSections.map((sec, index) => {
       const el = document.getElementById(sec.id)
@@ -183,10 +171,8 @@ function Home({ toggleDark, dark }) {
     return () => observers.forEach((o) => o && o.disconnect())
   }, [])
 
-  // ── Arrow key navigation ───────────────────────────────────────────────────
   useEffect(() => {
     const handleKey = (e) => {
-      // If in projects section, Left/Right control project pagination
       if (activeSection === 3) {
         if (e.key === 'ArrowDown') {
           setProjectIndex((p) => (p + 1) % TOTAL_PROJECTS)
@@ -197,7 +183,6 @@ function Home({ toggleDark, dark }) {
           return
         }
       }
-
       if (e.key === 'ArrowRight') {
         const next = Math.min(activeSection + 1, navSections.length - 1)
         scrollToSection(next)
@@ -210,7 +195,6 @@ function Home({ toggleDark, dark }) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [scrollToSection, activeSection])
 
-  // ── Dots hover handlers ────────────────────────────────────────────────────
   const handleDotsEnter = () => { clearTimeout(hideTimer.current); setNavVisible(true) }
   const handleDotsLeave = () => { hideTimer.current = setTimeout(() => setNavVisible(false), 500) }
   const handleNavEnter  = () => clearTimeout(hideTimer.current)
@@ -218,11 +202,8 @@ function Home({ toggleDark, dark }) {
 
   return (
     <div className="relative">
-
-      {/* ── Particle background ─────────────────────────────────────────── */}
       <ParticleBackground />
 
-      {/* ── Navbar ──────────────────────────────────────────────────────── */}
       <div onMouseEnter={handleNavEnter} onMouseLeave={handleNavLeave}>
         <Navbar
           visible={navVisible}
@@ -233,7 +214,6 @@ function Home({ toggleDark, dark }) {
         />
       </div>
 
-      {/* ── Dots bar — always visible ────────────────────────────────────── */}
       <div
         className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50"
         onMouseEnter={handleDotsEnter}
@@ -260,13 +240,8 @@ function Home({ toggleDark, dark }) {
         </div>
       </div>
 
-      {/* ── HOME SECTION ────────────────────────────────────────────────── */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center px-8 md:px-16 max-w-6xl mx-auto"
-      >
+      <section id="home" className="relative min-h-screen flex items-center px-8 md:px-16 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12 w-full">
-
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -282,7 +257,6 @@ function Home({ toggleDark, dark }) {
           </motion.div>
 
           <div className="flex-1 flex flex-col items-start text-left">
-
             <motion.p
               initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -354,7 +328,9 @@ function Home({ toggleDark, dark }) {
               </motion.button>
               <motion.a
                 whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
-                href="/cv/CV.pdf" download="Anjula_Nimedha_CV.pdf"
+          
+                href={`${import.meta.env.BASE_URL}cv/CV.pdf`}
+                target="_blank"
                 className="px-6 py-3 border border-blue-400 dark:border-blue-600 text-blue-600 dark:text-blue-400 rounded-2xl text-sm font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
               >
                 Download CV ↓
@@ -396,51 +372,29 @@ function Home({ toggleDark, dark }) {
         </div>
       </section>
 
-      {/* ── ABOUT SECTION ───────────────────────────────────────────────── */}
-      <section
-        id="about"
-        className="relative min-h-screen flex items-center bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-sm"
-      >
+      <section id="about" className="relative min-h-screen flex items-center bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-sm">
         <About />
       </section>
 
-      {/* ── EDUCATION SECTION ───────────────────────────────────────────── */}
-      <section
-        id="education"
-        className="relative min-h-screen flex items-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm"
-      >
+      <section id="education" className="relative min-h-screen flex items-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
         <Education />
       </section>
 
-      {/* ── PROJECTS SECTION ────────────────────────────────────────────── */}
-      <section
-        id="projects"
-        className="relative min-h-screen flex flex-col items-center justify-center bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-sm"
-      >
+      <section id="projects" className="relative min-h-screen flex flex-col items-center justify-center bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-sm">
         <Projects />
-        {/* Pagination dot bar for projects */}
         <ProjectPagination
           currentIndex={projectIndex}
           setCurrentIndex={setProjectIndex}
         />
       </section>
 
-      {/* ── ACHIEVEMENTS SECTION ────────────────────────────────────────── */}
-      <section
-        id="achievements"
-        className="relative min-h-screen flex items-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm"
-      >
+      <section id="achievements" className="relative min-h-screen flex items-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
         <Achivements />
       </section>
 
-      {/* ── CONTACT SECTION ─────────────────────────────────────────────── */}
-      <section
-        id="contact"
-        className="relative min-h-screen flex items-center bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-sm"
-      >
+      <section id="contact" className="relative min-h-screen flex items-center bg-gray-50/80 dark:bg-slate-900/80 backdrop-blur-sm">
         <Contact />
       </section>
-
     </div>
   )
 }
