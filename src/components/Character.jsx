@@ -1,11 +1,13 @@
+import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
+import characterImg from '../assets/character2.png'
 
 function Character({ message = "Hi there! Welcome! 👋" }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <motion.img
-        src={`${import.meta.env.BASE_URL}character.png`}
-        alt="character"
+        src={characterImg}
+        alt="home character"
         className="w-64 md:w-80 object-contain"
         animate={{ y: [0, -15, 0] }}
         transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
@@ -20,6 +22,10 @@ function Character({ message = "Hi there! Welcome! 👋" }) {
       </motion.div>
     </div>
   )
+}
+
+Character.propTypes = {
+  message: PropTypes.string,
 }
 
 export default Character

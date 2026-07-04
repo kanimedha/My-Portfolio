@@ -6,20 +6,20 @@ function FloatingDarkToggle({ dark, toggleDark }) {
     <motion.button
       onClick={toggleDark}
       initial={{ opacity: 1, scale: 0.7, x: 20 }}
-      animate={{ opacity: 3, scale: 1, x: 0 }}
+      animate={{ opacity: 1, scale: 1, x: 0 }}
       transition={{ delay: 0.3, type: 'spring', stiffness: 300, damping: 22 }}
       whileHover={{ scale: 1.15 }}
       whileTap={{ scale: 0.92 }}
       aria-label="Toggle dark mode"
-className="fixed top-5 right-5 z-[200] w-14 h-14 rounded-2xl flex items-center justify-center shadow-xl border transition-all duration-300 bg-white dark:bg-slate-800"      
-style={{
-  borderColor: dark
-    ? 'rgba(99, 179, 237, 0.8)'
-    : 'rgba(59, 130, 246, 0.6)',
-  boxShadow: dark
-    ? '0 6px 32px rgba(59,130,246,0.6), 0 1px 4px rgba(0,0,0,0.8)'
-    : '0 6px 32px rgba(59,130,246,0.4), 0 1px 4px rgba(0,0,0,0.2)',
-}}
+      className="fixed top-5 right-5 z-[200] w-14 h-14 rounded-2xl flex items-center justify-center shadow-xl border-2 transition-all duration-300 bg-white dark:bg-slate-800"
+      style={{
+        borderColor: dark
+          ? '#63B3ED'
+          : '#0b3b88',
+        boxShadow: dark
+          ? '0 6px 32px rgba(99,179,237,0.9), 0 2px 8px rgba(0,0,0,0.9)'
+          : '0 6px 32px rgba(8, 52, 122, 0.7), 0 2px 8px rgba(0,0,0,0.3)',
+      }}
     >
       <AnimatePresence mode="wait">
         {dark ? (

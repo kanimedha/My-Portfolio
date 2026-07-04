@@ -178,10 +178,10 @@ function Contact() {
   )
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 md:px-12 py-12">
-      <div className="flex flex-col md:flex-row items-center gap-10 w-full max-w-5xl">
+    <div className="min-h-screen flex items-center justify-center px-6 md:px-12 py-12 w-full">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 w-full max-w-5xl mx-auto">
 
-        <motion.div initial={{ opacity:0, x:-40 }} animate={{ opacity:1, x:0 }} transition={{ duration:0.7, type:'spring' }} className="flex-1 flex justify-center">
+        <motion.div initial={{ opacity:0, x:-40 }} animate={{ opacity:1, x:0 }} transition={{ duration:0.7, type:'spring' }} className="flex-1 flex justify-right">
           <CharacterWithOrbit />
         </motion.div>
 

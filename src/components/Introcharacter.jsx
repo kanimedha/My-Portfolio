@@ -26,7 +26,7 @@ const Character = ({ message = "Welcome! Let me show you around 😊" }) => {
         transition={{ duration: 0.8 }}
       >
         <motion.img
-          src="src/assets/character.png"     // ← Change this to your actual image path
+          src="src/assets/character2.png"     // ← Change this to your actual image path
           alt="Anjula Nimedha"
           className="w-full h-full object-contain"
           animate={{

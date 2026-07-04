@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import graduateImg from '../assets/graduate.png';
+import graduateVideo from '../assets/education character.mp4';
 import universityLogo from '../assets/university.png';
 import schoolLogo from '../assets/school.png';
 import universityBg from '../assets/university_background.jpg';
@@ -38,9 +38,12 @@ const Education = () => {
           className="hidden md:flex flex-col justify-end flex-shrink-0"
           style={{ width: '320px' }}
         >
-          <img
-            src={graduateImg}
-            alt="Graduate"
+          <video
+            src={graduateVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full object-contain object-bottom"
             style={{ maxHeight: '580px' }}
           />

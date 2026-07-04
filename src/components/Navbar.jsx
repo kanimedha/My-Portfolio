@@ -14,7 +14,6 @@ function Navbar({ visible, activeSection = -1, onNavClick, toggleDark, dark }) {
     { id: 'about',        label: 'About',         index: 1 },
     { id: 'education',    label: 'Education',     index: 2 },
     { id: 'projects',     label: 'Projects',      index: 3 },
-    { id: 'achievements', label: 'Achievements',  index: 4 },
     { id: 'contact',      label: 'Contact',       index: 5 },
   ]
 
